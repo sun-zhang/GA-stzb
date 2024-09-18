@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽卡记录日历</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="calendar-controls">
+            <div class="view-mode-selector">
+                <select id="viewMode">
+                    <option value="dayGridMonth">月视图</option>
+                    <option value="dayGridWeek">周视图</option>
+                </select>
+            </div>
+            <div class="navigation-buttons">
+                <button id="prevBtn">上一个</button>
+                <button id="nextBtn">下一个</button>
+                <button id="todayBtn">回到今天</button>
+            </div>
+        </div>
+        <div id="calendar"></div>
+        <button id="registerFiveStarBtn" class="register-five-star-btn">登记5星</button>
+    </div>
+
+    <!-- 五星卡选择弹窗 -->
+    <div id="fiveStarModal" class="modal">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="close-btn">&times;</button>
+            <h2>抽中了哪张五星卡</h2>
+            <div class="search-box">
+                <input type="text" id="cardSearch" placeholder="输入武将名">
+                <button id="searchBtn">搜索</button> <!-- 添加搜索按钮 -->
+            </div>
+            <div class="price-options" id="priceOptions" style="display: none;">
+                <div id="pullCardTypeSelect" class="custom-dropdown">
+                    <div class="options" style="display: none;">
+                        <div class="option" data-value="1">免费</div>
+                        <div class="option" data-value="2">半价</div>
+                        <div class="option" data-value="3">全价</div>
+                        <div class="option" data-value="4">五连</div>
+                        <div class="option" data-value="5">金币</div>
+                        <div class="option" data-value="6">寻访</div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-options">
+                <div class="tabs">
+                    <button class="tab-btn active" data-faction="0">全部</button>
+                    <button class="tab-btn" data-faction="1">魏</button>
+                    <button class="tab-btn" data-faction="2">蜀</button>
+                    <button class="tab-btn" data-faction="3">吴</button>
+                    <button class="tab-btn" data-faction="4">汉</button>
+                    <button class="tab-btn" data-faction="5">群</button>
+                    <button class="tab-btn" data-faction="6">晋</button>
+                </div>
+            </div>
+            <div id="cardList" class="card-list">
+                <!-- 卡牌列表将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 确认窗口 -->
+    <div id="confirmationModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="close-btn">&times;</button>
+            <h2>确认抽卡信息</h2>
+            <div id="cardInfo">
+                <img id="cardImage" src="" alt="武将卡" />
+                <p id="cardName"></p>
+                <p id="pullCardType"></p>
+            </div>
+            <div class="modal-buttons">
+                <button id="confirmCardBtn">确认登记</button>
+                <button id="cancelCardBtn">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        加载中...
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
